@@ -8,7 +8,7 @@
 //数组扩容，翻一倍容量
 void adt_array_list_expansion(array_list *array) {
     array->limit <<= 1;
-    array->src = reallocarray(array->src, array->limit, sizeof(void *));
+    array->src = realloc(array->src, array->limit * sizeof(void *));
 }
 
 //元素偏移
@@ -28,6 +28,7 @@ void adt_array_list_offset(array_list *array, unsigned int index, int offset) {
     }
 }
 
+//检测边界
 char adt_array_list_check_border(array_list *array, unsigned int index) {
     return index >= array->size;
 }
