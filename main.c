@@ -3,19 +3,39 @@
 #include <string.h>
 
 #include <list.h>
+#include <stack.h>
 
 void iterator(int i, void *val);
 void array_list_demo();
 
 void linked_list_demo();
 
+void stack_demo();
+
 int main() {
 
 //    array_list_demo();
 
-    linked_list_demo();
+//    linked_list_demo();
+
+    stack_demo();
 
     return 0;
+}
+
+void stack_demo() {
+    stack *obj = adt_stack_new();
+    int a = 10, b = 20, c = 30;
+    adt_stack_push(obj, &a);
+    adt_stack_push(obj, &b);
+    adt_stack_push(obj, &c);
+
+    for (int i = 0; i < 3; ++i) {
+        int *res = adt_stack_pop(obj);
+        printf("%d \n", *res);
+    }
+
+    adt_stack_release(obj, NULL);
 }
 
 void linked_list_demo() {

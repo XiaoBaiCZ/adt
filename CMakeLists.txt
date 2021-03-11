@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(adt-demo main.c)
 
-add_library(adt SHARED array_list.c linked_list.c)
+add_library(adt SHARED array_list.c linked_list.c stack.c)
 
 set_target_properties(adt PROPERTIES PREFIX lib)
 
