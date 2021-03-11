@@ -16,9 +16,9 @@ int main() {
 
 //    array_list_demo();
 
-//    linked_list_demo();
+    linked_list_demo();
 
-    stack_demo();
+//    stack_demo();
 
     return 0;
 }
@@ -42,20 +42,13 @@ void linked_list_demo() {
     adt_linked_list *linked = adt_linked_list_new();
 
     int x = 10;
-    for (int i = 0; i < 10; ++i) {
-        adt_linked_list_append(linked, &x);
-    }
+    adt_linked_list_append(linked, &x);
+    adt_linked_list_append(linked, &x);
+    adt_linked_list_append(linked, &x);
 
-    int y = 20;
-    const int index = 6;
-    adt_linked_list_set(linked, index, &y);
-
-    int *target = adt_linked_list_get(linked, index);
-    printf("-- %d: %d \n", index, *target);
-
-    adt_linked_list_del(linked, index);
-
-    adt_linked_list_insert(linked, index, &y);
+    adt_linked_list_del(linked, 0);
+    adt_linked_list_del(linked, 0);
+    adt_linked_list_del(linked, 0);
 
     adt_linked_list_iteration(linked, iterator);
 

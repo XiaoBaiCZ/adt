@@ -143,11 +143,19 @@ void *adt_linked_list_del(adt_linked_list *linked, unsigned int index) {
         }
     }
 
-    //pre -> node -> next
-
     adt_linked_list_node *pre = node->pre;
-    pre->next = node->next;
-    node->next->pre = pre;
+    adt_linked_list_node *next = node->next;
+    if (pre == NULL) {
+        linked->head = next;
+    } else {
+        pre->next = next;
+    }
+    if (next == NULL) {
+        linked->tail = pre;
+    } else {
+        next->pre = pre;
+    }
+
     void *old = node->val;
     node->val = NULL;
     node->pre = NULL;
