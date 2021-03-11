@@ -24,7 +24,7 @@ int main() {
 }
 
 void stack_demo() {
-    stack *obj = adt_stack_new();
+    adt_stack *obj = adt_stack_new();
     int a = 10, b = 20, c = 30;
     adt_stack_push(obj, &a);
     adt_stack_push(obj, &b);
@@ -39,7 +39,7 @@ void stack_demo() {
 }
 
 void linked_list_demo() {
-    linked_list *linked = adt_linked_list_new();
+    adt_linked_list *linked = adt_linked_list_new();
 
     int x = 10;
     for (int i = 0; i < 10; ++i) {
@@ -63,7 +63,7 @@ void linked_list_demo() {
 }
 
 void array_list_demo() {
-    array_list *array = adt_array_list_new();
+    adt_array_list *array = adt_array_list_new();
 
     int a = 1;
     for (int i = 0; i < 10; ++i) {

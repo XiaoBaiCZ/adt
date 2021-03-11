@@ -6,13 +6,13 @@
 #include <stdlib.h>
 
 //数组扩容，翻一倍容量
-void adt_array_list_expansion(array_list *array) {
+void adt_array_list_expansion(adt_array_list *array) {
     array->limit <<= 1;
     array->src = realloc(array->src, array->limit * sizeof(void *));
 }
 
 //元素偏移
-void adt_array_list_offset(array_list *array, unsigned int index, int offset) {
+void adt_array_list_offset(adt_array_list *array, unsigned int index, int offset) {
     if (offset == 0) {
         return;
     }
@@ -29,19 +29,19 @@ void adt_array_list_offset(array_list *array, unsigned int index, int offset) {
 }
 
 //检测边界
-char adt_array_list_check_border(array_list *array, unsigned int index) {
+char adt_array_list_check_border(adt_array_list *array, unsigned int index) {
     return index >= array->size;
 }
 
-array_list *adt_array_list_new() {
-    array_list *array = calloc(1, sizeof(array_list));
+adt_array_list *adt_array_list_new() {
+    adt_array_list *array = calloc(1, sizeof(adt_array_list));
     array->size = 0;
     array->limit = ADT_DEF_SIZE;
     array->src = calloc(ADT_DEF_SIZE, sizeof(void *));
     return array;
 }
 
-void adt_array_list_release(array_list *array, adt_list_iterator iterator) {
+void adt_array_list_release(adt_array_list *array, adt_list_iterator iterator) {
     if (iterator != NULL) {
         for (int i = 0; i < array->size; ++i) {
             iterator(i, array->src[i]);
@@ -53,7 +53,7 @@ void adt_array_list_release(array_list *array, adt_list_iterator iterator) {
     free(array);
 }
 
-void adt_array_list_iteration(array_list *array, adt_list_iterator iterator) {
+void adt_array_list_iteration(adt_array_list *array, adt_list_iterator iterator) {
     if (iterator != NULL) {
         for (int i = 0; i < array->size; ++i) {
             iterator(i, array->src[i]);
@@ -61,7 +61,7 @@ void adt_array_list_iteration(array_list *array, adt_list_iterator iterator) {
     }
 }
 
-void *adt_array_list_append(array_list *array, void *val) {
+void *adt_array_list_append(adt_array_list *array, void *val) {
     if (array->size + 1 >= array->limit) {
         adt_array_list_expansion(array);
     }
@@ -69,7 +69,7 @@ void *adt_array_list_append(array_list *array, void *val) {
     return val;
 }
 
-void *adt_array_list_insert(array_list *array, unsigned int index, void *val) {
+void *adt_array_list_insert(adt_array_list *array, unsigned int index, void *val) {
     if (index > array->size) {
         return NULL;
     }
@@ -82,7 +82,7 @@ void *adt_array_list_insert(array_list *array, unsigned int index, void *val) {
     return val;
 }
 
-void *adt_array_list_set(array_list *array, unsigned int index, void *val) {
+void *adt_array_list_set(adt_array_list *array, unsigned int index, void *val) {
     if (adt_array_list_check_border(array, index)) {
         return NULL;
     }
@@ -91,7 +91,7 @@ void *adt_array_list_set(array_list *array, unsigned int index, void *val) {
     return old;
 }
 
-void *adt_array_list_del(array_list *array, unsigned int index) {
+void *adt_array_list_del(adt_array_list *array, unsigned int index) {
     if (adt_array_list_check_border(array, index)) {
         return NULL;
     }
@@ -101,14 +101,14 @@ void *adt_array_list_del(array_list *array, unsigned int index) {
     return old;
 }
 
-void *adt_array_list_get(array_list *array, unsigned int index) {
+void *adt_array_list_get(adt_array_list *array, unsigned int index) {
     if (adt_array_list_check_border(array, index)) {
         return NULL;
     }
     return array->src[index];
 }
 
-char adt_array_list_isempty(array_list *array) {
+char adt_array_list_isempty(adt_array_list *array) {
     return array->size == 0;
 }
 

@@ -6,26 +6,26 @@
 #include <stdlib.h>
 
 //检测边界
-char adt_linked_list_check_border(linked_list *linked, unsigned int index) {
+char adt_linked_list_check_border(adt_linked_list *linked, unsigned int index) {
     return index >= linked->size;
 }
 
-linked_list *adt_linked_list_new() {
-    linked_list *linked = calloc(1, sizeof(linked_list));
+adt_linked_list *adt_linked_list_new() {
+    adt_linked_list *linked = calloc(1, sizeof(adt_linked_list));
     linked->size = 0;
     linked->head = NULL;
     linked->tail = NULL;
     return linked;
 }
 
-void adt_linked_list_release(linked_list *linked, adt_list_iterator iterator) {
-    linked_list_node *node = linked->head;
+void adt_linked_list_release(adt_linked_list *linked, adt_list_iterator iterator) {
+    adt_linked_list_node *node = linked->head;
     int index = 0;
     while (node != NULL) {
         if (iterator != NULL) {
             iterator(index, node->val);
         }
-        linked_list_node *temp = node->next;
+        adt_linked_list_node *temp = node->next;
         node->val = NULL;
         node->pre = NULL;
         node->next = NULL;
@@ -35,12 +35,12 @@ void adt_linked_list_release(linked_list *linked, adt_list_iterator iterator) {
     }
 }
 
-void adt_linked_list_iteration(linked_list *linked, adt_list_iterator iterator) {
+void adt_linked_list_iteration(adt_linked_list *linked, adt_list_iterator iterator) {
     if (iterator == NULL) {
         return;
     }
 
-    linked_list_node *node = linked->head;
+    adt_linked_list_node *node = linked->head;
     int index = 0;
     while (node != NULL) {
         iterator(index, node->val);
@@ -49,8 +49,8 @@ void adt_linked_list_iteration(linked_list *linked, adt_list_iterator iterator) 
     }
 }
 
-void *adt_linked_list_append(linked_list *linked, void *val) {
-    linked_list_node *node = calloc(1, sizeof(linked_list_node));
+void *adt_linked_list_append(adt_linked_list *linked, void *val) {
+    adt_linked_list_node *node = calloc(1, sizeof(adt_linked_list_node));
     node->val = val;
     node->pre = NULL;
     node->next = NULL;
@@ -66,17 +66,17 @@ void *adt_linked_list_append(linked_list *linked, void *val) {
     return val;
 }
 
-void *adt_linked_list_insert(linked_list *linked, unsigned int index, void *val) {
+void *adt_linked_list_insert(adt_linked_list *linked, unsigned int index, void *val) {
     if (adt_linked_list_check_border(linked, index)) {
         return NULL;
     }
 
-    linked_list_node *new = calloc(1, sizeof(linked_list_node));
+    adt_linked_list_node *new = calloc(1, sizeof(adt_linked_list_node));
     new->val = val;
     new->pre = NULL;
     new->next = NULL;
 
-    linked_list_node *node;
+    adt_linked_list_node *node;
     //折半查找
     if (index < linked->size / 2) {
         node = linked->head;
@@ -90,7 +90,7 @@ void *adt_linked_list_insert(linked_list *linked, unsigned int index, void *val)
         }
     }
 
-    linked_list_node *pre = node->pre;
+    adt_linked_list_node *pre = node->pre;
     pre->next = new;
     new->pre = pre;
     new->next = node;
@@ -100,12 +100,12 @@ void *adt_linked_list_insert(linked_list *linked, unsigned int index, void *val)
     return val;
 }
 
-void *adt_linked_list_set(linked_list *linked, unsigned int index, void *val) {
+void *adt_linked_list_set(adt_linked_list *linked, unsigned int index, void *val) {
     if (adt_linked_list_check_border(linked, index)) {
         return NULL;
     }
 
-    linked_list_node *node;
+    adt_linked_list_node *node;
     //折半查找
     if (index < linked->size / 2) {
         node = linked->head;
@@ -119,17 +119,17 @@ void *adt_linked_list_set(linked_list *linked, unsigned int index, void *val) {
         }
     }
 
-    linked_list_node *old = node->val;
+    adt_linked_list_node *old = node->val;
     node->val = val;
     return old;
 }
 
-void *adt_linked_list_del(linked_list *linked, unsigned int index) {
+void *adt_linked_list_del(adt_linked_list *linked, unsigned int index) {
     if (adt_linked_list_check_border(linked, index)) {
         return NULL;
     }
 
-    linked_list_node *node;
+    adt_linked_list_node *node;
     //折半查找
     if (index < linked->size / 2) {
         node = linked->head;
@@ -145,7 +145,7 @@ void *adt_linked_list_del(linked_list *linked, unsigned int index) {
 
     //pre -> node -> next
 
-    linked_list_node *pre = node->pre;
+    adt_linked_list_node *pre = node->pre;
     pre->next = node->next;
     node->next->pre = pre;
     void *old = node->val;
@@ -158,12 +158,12 @@ void *adt_linked_list_del(linked_list *linked, unsigned int index) {
     return old;
 }
 
-void *adt_linked_list_get(linked_list *linked, unsigned int index) {
+void *adt_linked_list_get(adt_linked_list *linked, unsigned int index) {
     if (adt_linked_list_check_border(linked, index)) {
         return NULL;
     }
 
-    linked_list_node *node;
+    adt_linked_list_node *node;
     //折半查找
     if (index < linked->size / 2) {
         node = linked->head;
@@ -179,6 +179,6 @@ void *adt_linked_list_get(linked_list *linked, unsigned int index) {
     return node->val;
 }
 
-char adt_linked_list_isempty(linked_list *linked) {
+char adt_linked_list_isempty(adt_linked_list *linked) {
     return linked->size == 0;
 }
