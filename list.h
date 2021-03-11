@@ -37,6 +37,8 @@ void *adt_array_list_set(array_list *array, unsigned int index, void *val);
 void *adt_array_list_del(array_list *array, unsigned int index);
 //获取元素
 void *adt_array_list_get(array_list *array, unsigned int index);
+//判空 0 是非空
+char adt_array_list_isempty(array_list *array);
 
 
 
@@ -77,5 +79,7 @@ void *adt_linked_list_set(linked_list *linked, unsigned int index, void *val);
 void *adt_linked_list_del(linked_list *linked, unsigned int index);
 //获取元素
 void *adt_linked_list_get(linked_list *linked, unsigned int index);
+//判空 0 是非空
+char adt_linked_list_isempty(linked_list *linked);
 
 #endif //ADT_LIST_H

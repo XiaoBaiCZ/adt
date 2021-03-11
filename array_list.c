@@ -108,3 +108,7 @@ void *adt_array_list_get(array_list *array, unsigned int index) {
     return array->src[index];
 }
 
+char adt_array_list_isempty(array_list *array) {
+    return array->size == 0;
+}
+

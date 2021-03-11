@@ -20,5 +20,7 @@ void *adt_stack_push(stack *obj, void *val);
 void *adt_stack_pop(stack *obj);
 //获取栈顶
 void *adt_stack_peek(stack *obj);
+//判空 0 是非空
+char adt_stack_isempty(stack *obj);
 
 #endif //ADT_STACK_H

@@ -178,3 +178,7 @@ void *adt_linked_list_get(linked_list *linked, unsigned int index) {
     }
     return node->val;
 }
+
+char adt_linked_list_isempty(linked_list *linked) {
+    return linked->size == 0;
+}

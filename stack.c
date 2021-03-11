@@ -24,3 +24,7 @@ void *adt_stack_peek(stack *obj) {
     return adt_array_list_get(obj, obj->size - 1);
 }
 
+char adt_stack_isempty(stack *obj) {
+    return adt_array_list_isempty(obj);
+}
+
